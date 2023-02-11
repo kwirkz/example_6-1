@@ -1,4 +1,4 @@
-//=====[Libraries]=============================================================
+/=====[Libraries]=============================================================
 
 #include "mbed.h"
 #include "arm_book_lib.h"
@@ -134,12 +134,12 @@ static void userInterfaceDisplayInit()
     displayInit();
      
     displayCharPositionWrite ( 0,0 );
-    displayStringWrite( "Temperature:" );
+    displayStringWrite( "Tmp:" );
 
-    displayCharPositionWrite ( 0,1 );
+    displayCharPositionWrite ( 9,0 );
     displayStringWrite( "Gas:" );
     
-    displayCharPositionWrite ( 0,2 );
+    displayCharPositionWrite ( 0,1 );
     displayStringWrite( "Alarm:" );
 }
 
@@ -154,20 +154,20 @@ static void userInterfaceDisplayUpdate()
         accumulatedDisplayTime = 0;
 
         sprintf(temperatureString, "%.0f", temperatureSensorReadCelsius());
-        displayCharPositionWrite ( 12,0 );
+        displayCharPositionWrite ( 4,0 );
         displayStringWrite( temperatureString );
-        displayCharPositionWrite ( 14,0 );
+        displayCharPositionWrite ( 6,0 );
         displayStringWrite( "'C" );
 
-        displayCharPositionWrite ( 4,1 );
+        displayCharPositionWrite ( 13,0 );
 
         if ( gasDetectorStateRead() ) {
-            displayStringWrite( "Detected    " );
+            displayStringWrite( "D    " );
         } else {
-            displayStringWrite( "Not Detected" );
+            displayStringWrite( "ND" );
         }
 
-        displayCharPositionWrite ( 6,2 );
+        displayCharPositionWrite ( 6,1 );
         
         if ( sirenStateRead() ) {
             displayStringWrite( "ON " );
